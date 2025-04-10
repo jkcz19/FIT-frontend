@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shazam-like Instructions Modal</title>
+  <style>
+    :root {
+      --primary-color: #333;
+      --background-color: rgba(0, 0, 0, 0.5);
+      --modal-bg: #fff;
+      --accent-color: #4CAF50;
+      --font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-family);
+      background-color: #f0f0f0;
+      color: var(--primary-color);
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--background-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: var(--modal-bg);
+      padding: 25px 30px;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    .modal-content ol {
+      text-align: left;
+      margin: 20px 0;
+      padding-left: 20px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background-color: var(--accent-color);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .main-content {
+      padding: 50px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<!-- Modal -->
+  <div class="modal" id="instructionsModal">
+    <div class="modal-content">
+      <h2>Instructions</h2>
+      <ol>
+        <li>Step 1: Click the "Record" button to start recording what you want to play!</li>
+        <li>Step 2: System will analyze the recorded sound and generate a notes sheet.</li>
+        <li>Step 3: Read the results from the three sections below the record button.</li>
+      </ol>
+      <button class="btn" id="closeModal">Close</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h1>Welcome to Melody to Notes</h1>
+    <p>This is the main content of the page.</p>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const modal = document.getElementById('instructionsModal');
+      const closeModalBtn = document.getElementById('closeModal');
+
+      // Show modal only if not already dismissed in this session
+      if (!sessionStorage.getItem('modalDismissed')) {
+        modal.style.display = 'flex';
+      }
+
+      closeModalBtn.addEventListener('click', function () {
+        modal.style.display = 'none';
+        sessionStorage.setItem('modalDismissed', 'true');
+      });
+    });
+  </script>
+
+</body>
+</html>
